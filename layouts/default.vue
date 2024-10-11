@@ -4,8 +4,10 @@ console.log('loaded');
 
 <template>
   <section class="grid">
-    <aside class="sidebar">Sidebar</aside>
-    <div>
+    <aside class="sidebar">
+      <LayoutSidebar />
+    </aside>
+    <div class="">
       <slot />
     </div>
   </section>
@@ -18,6 +20,6 @@ console.log('loaded');
 }
 .sidebar {
   min-height: 100vh;
-  min-width: 100px;
+  min-width: 200px;
 }
 </style>
