@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useIsLoadingStore } from '~/store/auth.store';
+
 useHead({
   title: 'Login | CRM System',
 });
@@ -6,6 +8,9 @@ useHead({
 const emailRef = ref();
 const passwordRef = ref();
 const nameRef = ref();
+
+const isLoadingStore = useIsLoadingStore();
+const router = useRouter();
 </script>
 
 <template>
