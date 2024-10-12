@@ -18,6 +18,7 @@ export default defineNuxtConfig({
       },
     ],
     '@nuxt/icon',
+    '@pinia/nuxt',
   ],
   shadcn: {
     /**
@@ -29,6 +30,9 @@ export default defineNuxtConfig({
      * @default "./components/ui"
      */
     componentDir: './components/ui',
+  },
+  pinia: {
+    storesDirs: ['./store/**'],
   },
   runtimeConfig: {
     appWriteId: process.env.APP_WRITE_ID,
