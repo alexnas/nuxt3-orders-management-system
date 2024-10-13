@@ -35,6 +35,6 @@ export default defineNuxtConfig({
     storesDirs: ['./store/**'],
   },
   runtimeConfig: {
-    appWriteId: process.env.APP_WRITE_ID,
+    VITE_appWriteId: process.env.VITE_APP_WRITE_ID,
   },
 });
