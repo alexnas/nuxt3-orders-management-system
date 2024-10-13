@@ -1,7 +1,6 @@
-// import { APP_WRITE_ID } from '@/app.constants';
 import { Account, Client, Databases, Storage } from 'appwrite';
-const { appWriteId } = useRuntimeConfig();
 
+const appWriteId = import.meta.env.VITE_APP_WRITE_ID;
 export const client = new Client();
 
 client.setEndpoint('https://cloud.appwrite.io/v1').setProject(appWriteId);
