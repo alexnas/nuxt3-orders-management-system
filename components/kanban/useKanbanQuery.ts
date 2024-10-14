@@ -11,12 +11,33 @@ export function useKanbanQuery() {
     queryKey: ['deals'],
     queryFn: () => DB.listDocuments(DB_ID, COLLECTION_DEALS),
     select(data) {
+      console.log('useKanbanQuery start');
+
       const newBoard: IColumn[] = KANBAN_DATA.map((column) => ({
         ...column,
         items: [] as ICard[],
       }));
 
       const deals = data.documents as unknown as IDeal[];
+      console.log('useKanbanQuery inside', newBoard, deals.length);
+
+      for (const deal of deals) {
+        const column = newBoard.find((col) => col.id === deal.status);
+        if (column) {
+          column.items.push({
+            $createdAt: deal.$createdAt,
+            id: deal.$id,
+            name: deal.name,
+            price: deal.price,
+            companyName: deal.customer.name,
+            status: column.name,
+          });
+        }
+      }
+
+      console.log('useKanbanQuery after', newBoard);
+
+      console.log('newBoard', newBoard);
 
       return newBoard;
     },
