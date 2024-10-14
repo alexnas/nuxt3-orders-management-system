@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { account } from '@/utils/appwrite';
+import { account } from '~/lib/appwrite';
 import { useAuthStore, useIsLoadingStore } from '~/store/auth.store';
 
 const isLoadingStore = useIsLoadingStore();
