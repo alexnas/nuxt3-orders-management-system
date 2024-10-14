@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { v4 as uuid } from 'uuid';
 import { useAuthStore, useIsLoadingStore } from '~/store/auth.store';
+import { account } from '~/lib/appwrite';
 
 useHead({
   title: 'Login | CRM System',
