@@ -12,26 +12,27 @@ const dragCardRef = ref<ICard | null>(null);
 const sourceColumnRef = ref<IColumn | null>();
 
 const { data, isLoading, refetch } = useKanbanQuery();
-
-console.log('data.value', data.value);
 </script>
 
 <template>
-  <div class="p-10">
+  <div class="p-10 overflow-x-auto">
     <h1 class="font-bold text-2xl mb-10">Orders Management System</h1>
     <div v-if="isLoading">Loading...</div>
 
     <div v-else>
       <div class="grid grid-cols-5 gap-16">
-        <div v-for="(column, index) in data" :key="column.id">
-          <div class="rounded bg-slate-700 py-1 px-5 mb-2 text-center">
+        <div v-for="(column, index) in data" :key="column.id" class="min-w-fit">
+          <div
+            class="rounded bg-slate-700 py-1 px-5 mb-2 text-center overflow-x-auto"
+          >
             {{ column.name }}
           </div>
           <div>
+            <KanbanCreateDeal :refetch="refetch" :status="column.id" />
             <UiCard
               v-for="card in column.items"
               :key="card.id"
-              class="mb-3"
+              class="mb-5"
               draggable="true"
             >
               <UiCardHeader role="button"
