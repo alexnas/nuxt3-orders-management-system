@@ -6,6 +6,7 @@ import { useKanbanQuery } from '~/components/kanban/useKanbanQuery';
 import { convertCurrency } from '~/lib/convertCurrency';
 import { DB } from '~/lib/appwrite';
 import type { EnumStatus } from '~/types/deals.types';
+import { generateColumnStyle } from '~/components/kanban/generate-gradient';
 const DB_ID = import.meta.env.VITE_DB_ID;
 const COLLECTION_DEALS = import.meta.env.VITE_COLLECTION_DEALS;
 
@@ -65,6 +66,7 @@ const handleDrop = (targetColumn: IColumn) => {
         >
           <div
             class="rounded bg-slate-700 py-1 px-5 mb-2 text-center overflow-x-auto"
+            :style="generateColumnStyle(index, data?.length)"
           >
             {{ column.name }}
           </div>
