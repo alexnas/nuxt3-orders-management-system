@@ -1,17 +1,36 @@
 <script lang="ts" setup>
-import { useDealSlideStore } from '~/store/deal-slide.store';
+import dayjs from 'dayjs';
+import { useComments } from './useComments';
+import { useCreateComment } from './useCreateComment';
+import type { IDeal } from '~/types/deals.types';
 
-const dealSlideStore = useDealSlideStore();
-const { card, isOpen } = storeToRefs(dealSlideStore);
+const { data, refetch, isLoading } = useComments();
+const { commentRef, writeComment } = useCreateComment({ refetch });
 
-const isLocalOpen = computed({
-  get: () => isOpen.value,
-  set: (value) => {
-    isOpen.value = value;
-  },
-});
+const card = data as unknown as IDeal;
 </script>
 
-<template></template>
+<template>
+  <UiInput
+    placeholder="Drop your comment here"
+    v-model="commentRef"
+    @keyup.enter="writeComment"
+  />
 
-<style scoped></style>
+  <UiSkeleton v-if="isLoading" class="w-full h-[76px] rounded mt-5" />
+  <div v-else-if="card">
+    <div
+      v-for="comment in card?.comments"
+      :key="comment.$id"
+      class="flex items-start mt-5"
+    >
+      <Icon name="radix-icons:chat-bubble" class="mr-3 mt-1" size="20" />
+      <div class="border-border bg-black/20 rounded p-3 w-full">
+        <div class="mb-2 text-sm">
+          Commented {{ dayjs(comment.$createdAt).format('HH:mm') }}
+        </div>
+        <p>{{ comment.text }}</p>
+      </div>
+    </div>
+  </div>
+</template>
