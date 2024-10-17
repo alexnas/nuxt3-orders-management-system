@@ -9,6 +9,7 @@ import type { EnumStatus } from '~/types/deals.types';
 import { generateColumnStyle } from '~/components/kanban/generate-gradient';
 const DB_ID = import.meta.env.VITE_DB_ID;
 const COLLECTION_DEALS = import.meta.env.VITE_COLLECTION_DEALS;
+import { useDealSlideStore } from '~/store/deal-slide.store';
 
 useSeoMeta({
   title: 'Home | CRM System',
@@ -17,6 +18,8 @@ useSeoMeta({
 const dragCardRef = ref<ICard | null>(null);
 const sourceColumnRef = ref<IColumn | null>();
 const { data, isLoading, refetch } = useKanbanQuery();
+
+const dealSlideStore = useDealSlideStore();
 
 type TypeMutationVariables = {
   docId: string;
@@ -79,7 +82,7 @@ const handleDrop = (targetColumn: IColumn) => {
               draggable="true"
               @dragstart="() => handleDragStart(card, column)"
             >
-              <UiCardHeader role="button"
+              <UiCardHeader role="button" @click="dealSlideStore.set(card)"
                 >{{ card.name }}
                 <UiCardDescription class="mt-2 block">{{
                   convertCurrency(card.price)
@@ -95,6 +98,7 @@ const handleDrop = (targetColumn: IColumn) => {
           </div>
         </div>
       </div>
+      <KanbanSlideover />
     </div>
   </div>
 </template>
