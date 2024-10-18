@@ -1,6 +1,18 @@
-# Nuxt 3 Minimal Starter
+# Nuxt 3 Orders Management System
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Nuxt 3 Orders Management System app is developed as full functional Nuxt 3 self-training project and is intended to manage customer orders data, as a Kanban board cards. It allows to drag-n-drop deal card (order) through the board, create and update deal and customer data. It uses Typescript everywhere, operates with layoutes, specific Nuxt routing, storing data on the Appwrite, etc.
+Also Tanstack VueQuery is used for all query manipulations, TailwindCss - to style page styling, Shadcn and NuxtUI - to pre-made component, Appwrite as online backend, etc.
+
+## Used technologies
+
+- Nuxt 3
+- Pinia
+- Tanstack VueQuery
+- Typescript
+- Shadcn
+- NuxtUI
+- TailwindCss
+- AppWrite online backend.
 
 ## Setup
 
@@ -71,5 +83,3 @@ yarn preview
 # bun
 bun run preview
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
